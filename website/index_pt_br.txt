@@ -1,0 +1,57 @@
+h1. 'agendador'
+
+  Agendador é uma simples agenda em linguagem natural. Com ela, você pode por seus compromissos simplesmente digitando o que e quando você irá fazer.
+
+h2. Como instalar
+
+<pre syntax="ruby">sudo gem install agendador</pre>
+
+h2. O básico 
+
+  Apenas com "Chronic gem":http://chronic.rubyforge.org eu converti uma frase como:
+ <pre syntax="ruby"> 
+   puts  Chronic.parse("próximo sábado as 8").inspect
+   # Sat Nov 01 08:00:00 -0200 2008
+ </pre>
+  
+  com um monte de opções como esta, eu apenas reparti o resto da frase com a hora e coloquei o compromisso em uma agenda:
+  
+ <pre syntax="ruby"> 
+
+   include Agendador
+
+   agenda = Agenda.new 
+
+   ir_na_aula_de_ingles = Agendador.new :quando => "próximo sábado as 3 da tarde",
+                                        :descrição => "aula de ingles"
+
+   agenda.compromissos << go_to_english_class
+
+   puts agenda.compromissos # when?: Saturday(01) at 15:00 - english class
+
+ </pre>
+
+h2. Usando os métodos estáticos do agendador para ser mais fácil
+
+ <pre syntax="ruby"> 
+
+    Agendador.entenda "amanhã as 8 levantar cara!"
+    Agendador.entenda "amanhã as 9 trabalho, trabalho"
+    Agendador.entenda "comer alguma comida japonesa na hora do almoço com a maria."
+    Agendador.entenda "amanhã as 6:10pm sair do trabalho e tomar umas cervejas"
+    Agendador.entenda "amanhã as 6:30pm happy hour!!! uhuuuu"
+    
+    imprime Agendador.entenda "mostre amanhã as 6 da tarde" 
+
+    quando?: Segunda(27) as 18:10 - sair do trabalho e tomar umas cervejas
+    quando?: Segunda(27) as 18:30 - happy hour! woohooo
+
+ </pre>
+
+h2. Licença
+Esse código é livre para usar sobre os termos da licença MIT.
+
+h2. Contact
+
+Comments are welcome. Send an email to "Jônatas Davi Paganini":mailto:jonatasdp@gmail.com
+

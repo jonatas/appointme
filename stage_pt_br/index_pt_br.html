@@ -1,0 +1,363 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link rel="stylesheet" href="stylesheets/screen.css" type="text/css" media="screen" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>
+      &#8216;agendador&#8217;
+  </title>
+  <script src="javascripts/rounded_corners_lite.inc.js" type="text/javascript"></script>
+<style>
+
+</style>
+  <script type="text/javascript">
+    window.onload = function() {
+      settings = {
+          tl: { radius: 10 },
+          tr: { radius: 10 },
+          bl: { radius: 10 },
+          br: { radius: 10 },
+          antiAlias: true,
+          autoPad: true,
+          validTags: ["div"]
+      }
+      var versionBox = new curvyCorners(settings, document.getElementById("version"));
+      versionBox.applyCornersToAll();
+    }
+  </script>
+</head>
+<body>
+<div id="main">
+
+    <h1>&#8216;agendador&#8217;</h1>
+    <div id="version" class="clickable" onclick='document.location = "http://rubyforge.org/projects/appointme"; return false'>
+      <p>Get Version</p>
+      <a href="http://rubyforge.org/projects/appointme" class="numbers">0.0.4</a>
+    </div>
+    Agendador é uma simples agenda em linguagem natural. Com ela, você pode por seus compromissos digitando o que e quando você irá fazer.
+<h2>Ferramentas usadas para contrução:</h2>
+Este projeto foi feito usando <a href="http://newgem.rubyforge.org">NewGem</a> para empacotamento em formato de gem e <a href="http://rpsec.info">RSpec</a> para testes e bdd.
+<h3>O que é gem?</h3>
+Gem é um pacote de códigos ruby para rodar e instalar com facilidade, para usar as gems disponíveis é necessário instalar <a href="http://www.rubygems.org">Rubygems</a> que fornece um executável baseado na linha de comando com opções de gerenciar as gems, instalar, remover, ver documentações.
+Para usar as gems existentes é necessário digitar o comando gem install nome_da_gem, neste exemplo está instalando a gem agendador que seria a própria gem deste projeto.
+<p><pre class='syntax'>sudo gem install agendador</pre></p>
+Existe outra opção que é instalar localmente usando o próprio arquivo gem:
+<p><pre class='syntax'>
+jonatas@xonatax-mac:~/projetos/ruby/appointme$ sudo gem install pkg/appointme-0.0.4.gem 
+Password: ******
+
+Successfully installed appointme-0.0.4
+1 gem installed
+Installing ri documentation for appointme-0.0.4...
+Installing RDoc documentation for appointme-0.0.4..
+</pre></p>
+<h2>Documentação do projeto</h2>
+<h3>Ruby RI &#8211; Ferramenta de vizualização de documentação:</h3>
+<p>Observe que foi instalado a documentação ri e RDoc e apartir de agora estão disponíveis para consulta. Esta consulta pode ser feita através de um utilitário do ruby chamado ri:</p>
+<p><pre class='syntax'>
+jonatas@xonatax-mac:~/projetos/ruby/appointme$ ri Appointme::Appointment
+
+------------------------------------------ Class: Appointme::Appointment
+     represents an appointment with some time and description puts
+     Appointme::Appointment.new :when =&gt; &quot;next sunday at 7:30&quot;,
+     :description =&gt; &quot;go to church&quot; when?: Sunday(02) at 07:30 - go to
+     church puts Appointme::Appointment.new :when =&gt;
+     Time.mktime(2008,10,10,19,30), :description =&gt; &quot;go to church&quot;
+     when?: Friday(10) at 19:30 - go to church
+
+------------------------------------------------------------------------
+
+Class methods:
+--------------
+     new
+
+Instance methods:
+-----------------
+     dont_know_when?, incomplete?, pretty_when, to_s, when
+
+Attributes:
+     description, when
+...skipping...
+------------------------------------------ 
+Class: Appointme::Appointment
+
+     represents an appointment with some time and description puts
+
+     Appointme::Appointment.new :when =&gt; &quot;next sunday at 7:30&quot;,
+                                :description =&gt; &quot;go to church&quot; 
+
+     # =&gt; when?: Sunday(02) at 07:30 - go to
+     Appointme::Appointment.new :when =&gt; Time.mktime(2008,10,10,19,30),
+                                :description =&gt; &quot;go to church&quot;
+
+     # =&gt; when?: Friday(10) at 19:30 - go to church
+
+------------------------------------------------------------------------
+
+Class methods:
+--------------
+     new
+
+Instance methods:
+-----------------
+     dont_know_when?, incomplete?, pretty_when, to_s, when
+
+Attributes:
+     description, when
+
+</pre></p>
+<p><ins>Observação:</ins><br />
+   Esta é uma ferramenta desenvolvida para acesso rápido via terminal unix ou ms-dos, existem outras ferramentas <span class="caps">GUI</span> para acessar a mesma documentação.</p>
+<h3>Para ver a documentação do projeto em html:</h3>
+<p>Digite o comando: <code>gem server</code></p>
+<p>Usando este comando, gem irá disponibilizar um <a href="http://localhost:8808">servidor em localhost</a> para vizualização do conteúdo de todas as gems e esta é outra ferramenta muito utilizada no desenvolvimento ruby.</p>
+<h3>Visão de alto-nível:</h3>
+<p>O sistema de documentação também gera uma relação geral das classes e relacionamentos de alto-nível.</p>
+<p><img src="images/top_level.jpeg" alt="" /></p>
+<h2>O que é <a href="http://rspec.info">RSpec?</a></h2>
+<p><a href="http://rspec.info">RSpec</a> é um framework de desenvolvimento <a href="http://behaviour-driven.org">orientado a comportamento</a> que básicamente consiste da evolução do desenvolvimento orientado a testes sendo mais conciso e aproxima-se mais de um ambiente de desenvolvimento mais evidente.<br />
+  Basicamente funciona como uma <b>regra</b> que tem uma <b>característica</b> e espera um <b>comportamento</b>.<br />
+<pre class='syntax'>
+<span class="ident">descreva</span> <span class="punct">&quot;</span><span class="string">adicionando um compromisso como tomar umas cervejas depois do trabalho</span><span class="punct">&quot;</span> <span class="punct">{</span> 
+    <span class="ident">antes</span><span class="punct">(</span><span class="symbol">:tudo</span><span class="punct">)</span> <span class="punct">{</span> 
+      <span class="attribute">@resposta</span> <span class="punct">=</span> <span class="constant">Agendador</span><span class="punct">.</span><span class="ident">entenda</span> <span class="punct">&quot;</span><span class="string">amanhã as 6:10pm sair e tomar umas cervejas</span><span class="punct">&quot;</span>
+      <span class="attribute">@ultimo_compromisso</span> <span class="punct">=</span> <span class="constant">Agendador</span><span class="punct">.</span><span class="ident">ultimo_compromisso</span>
+    <span class="punct">}</span> 
+
+    <span class="ident">isso</span> <span class="punct">&quot;</span><span class="string">deve marcar o compromisso com sucesso</span><span class="punct">&quot;</span> <span class="punct">{</span>
+      <span class="attribute">@resposta</span><span class="punct">.</span><span class="ident">nao_deve</span> <span class="ident">ser_null</span>
+      <span class="attribute">@ultimo_compromisso</span><span class="punct">.</span><span class="ident">nao_deve</span> <span class="ident">ser_null</span>
+    <span class="punct">}</span>
+
+    <span class="ident">isso</span> <span class="punct">&quot;</span><span class="string">deve saber que a descrição do compromisso é 'sair e tomar umas cervejas'</span><span class="punct">&quot;</span> <span class="punct">{</span>
+      <span class="attribute">@ultimo_compromisso</span><span class="punct">.</span><span class="ident">descricao</span><span class="punct">.</span><span class="ident">deve</span> <span class="ident">ser</span> <span class="punct">==</span> <span class="punct">&quot;</span><span class="string">sair e tomar umas cervejas</span><span class="punct">&quot;</span>
+    <span class="punct">}</span>
+
+    <span class="ident">isso</span> <span class="punct">&quot;</span><span class="string">deve saber que o compromisso é as 18:10</span><span class="punct">&quot;</span> <span class="punct">{</span>
+      <span class="attribute">@ultimo_compromisso</span><span class="punct">.</span><span class="ident">to_s</span><span class="punct">.</span><span class="ident">match</span> <span class="punct">/</span><span class="number">18</span><span class="punct">:</span><span class="number">10</span><span class="punct">/</span>
+    <span class="punct">}</span>
+  <span class="punct">}</span>
+<span class="punct">}</span>
+</pre></p>
+<h2>Visualizando specs no formato html</h2>
+<p><img src="images/rspec_resulting_with_errors.jpg" alt="" /></p>
+<h2>Visualizando no console:</h2>
+<p><img src="images/rspec_result_with_errors_console.jpg" alt="" /></p>
+<h3>Visualizando os specs do sistema:</h3>
+<p><code>rake spec_html</code></p>
+<p>Este comando gera o arquivo specs.html na pasta docs, apenas imprimindo todas as descrições de comportamento.<br />
+o spec sem rake também pode ser usado:</p>
+<p><code>spec spec/*_spec.rb --format html &gt; specs.html</code></p>
+<h2>Ferramenta rake:</h2>
+<p>Rake é o ruby make, uma ferramenta simples com um propósito similar ao ant ou make, executar tarefas e permitir criar tarefas de uma forma fácil. Por exemplo, este documento é gerado usando o comando <strong>rake estágio</strong> que seria para gerar o projeto de estágio(do inglês <em>stage</em> ). <br />
+<pre class='syntax'>
+<span class="ident">descrição</span> <span class="punct">'</span><span class="string">Gerar arquivos do estágio</span><span class="punct">'</span>
+<span class="ident">tarefa</span> <span class="symbol">:estagio</span> <span class="punct">{</span>
+  <span class="constant">Dir</span><span class="punct">['</span><span class="string">estagio/*.txt</span><span class="punct">'].</span><span class="ident">cada</span> <span class="punct">{</span> <span class="punct">|</span><span class="ident">txt</span><span class="punct">|</span> <span class="comment"># cada arquivo txt</span>
+    <span class="ident">sh</span> <span class="punct">%{</span><span class="string"> <span class="expr">#{RUBY_APP}</span> script/txt2html <span class="expr">#{txt}</span> &gt; <span class="expr">#{txt.gsub(/txt$/,'html')}</span> </span><span class="punct">}</span>
+  <span class="punct">}</span>
+<span class="punct">}</span>
+</pre></p>
+<p>Os arquivos rake devem ter a extensão .rake e no padrão gem está dentro da pasta tasks.<br />
+Para ver as tarefas existentes use <code>rake --tasks</code></p>
+<h2>New Gem</h2>
+<p>Newgem é uma gem que ajuda a criar outras gems gerando a estrutura default e as documentações e uma linda template css como esta que estamos usando.<br />
+Ele configura tarefas rake, gera executáveis, empacota as gems e traz todas as tarefas triviais para a publicação de uma gem e taferas que um projeto precisa executar.</p>
+<p>Se não fosse por esta ferramenta, este trabalho não iria ficar naturalmente com estas cores padrão, e não ia ser tão simples assim digitar tudo este html. Por default o newgem traz uma template iniciada com a documentação e as partes do projeto que precisa escrever os conteúdos bastando apenas alterar os txts referentes as documentações e gerar lindos htmls baseados em txt2html que é um script que usa <a href="http://redcloth.org">RedCloth</a>, que é uma ferramenta de converter <a href="http://hobix.com/textile/">marcações mais simples</a> em código html.<br />
+Observe que na tarefa rake criada acima este comando é executado convertendo todos os txt em html.</p>
+<h3>Estrutura default do projeto</h3>
+<p>Quando iniciado um novo projeto com newgem os seguintes diretórios estão disponíveis:</p>
+<p><pre class='syntax'>
+jonatas@xonatax-mac:~/projetos/ruby/appointme$ ls -lah 
+total 112
+drwxr-xr-x  18 jonatas  staff   612B Nov  2 11:50 .
+drwxr-xr-x  18 jonatas  staff   612B Oct 31 17:32 ..
+-rwxr-xr-x@  1 jonatas  staff   1.4K Oct 27 00:13 History.txt
+-rwxr-xr-x   1 jonatas  staff   1.0K Jul 21 19:33 License.txt
+-rwxr-xr-x   1 jonatas  staff   591B Oct 26 23:16 Manifest.txt
+-rwxr-xr-x   1 jonatas  staff   3.9K Oct 26 17:48 README.txt
+-rwxr-xr-x   1 jonatas  staff   139B Jul 21 19:33 Rakefile
+drwxr-xr-x   4 jonatas  staff   136B Jul 28 22:19 config
+drwxr-xr-x  11 jonatas  staff   374B Oct 27 22:10 doc
+drwxr-xr-x   4 jonatas  staff   136B Oct 26 22:54 lib
+drwxr-xr-x   4 jonatas  staff   136B Nov  2 11:50 pkg
+drwxr-xr-x   6 jonatas  staff   204B Jul 21 19:33 script
+-rwxr-xr-x   1 jonatas  staff    35K Jul 21 19:33 setup.rb
+drwxr-xr-x   6 jonatas  staff   204B Oct 27 21:45 spec
+drwxr-xr-x   8 jonatas  staff   272B Nov  2 11:49 stage_pt_br
+drwxr-xr-x   6 jonatas  staff   204B Oct 28 08:58 tasks
+drwxr-xr-x   4 jonatas  staff   136B Jul 21 19:33 test
+drwxr-xr-x   9 jonatas  staff   306B Oct 27 00:01 website
+</pre></p>
+<ol>
+	<li>No arquivo <b>History.txt</b> está gravado o histórico de atividades relacionadas a evolução do projeto. É neste arquivo que ficam relacionadas as modificações com usas respectivas datas, e também server como documentação e referência para o grupo que está desenvolvendo.</li>
+</ol>
+<ol>
+	<li>No arquivo <b>License.txt</b> fica escrito a liçensa de uso do código fonte, em nosso caso é <a href="http://pt.wikipedia.org/wiki/Licença_MIT"><span class="caps">MIT</span></a> e pode ser alterado ou não. Abaixo segue a tradução da licença.</li>
+</ol>
+<div style="background-color:white; font-color:black">
+<center> <b><span class="caps">MIT</span> License Copyright ©</b>  </center> 
+<p>É dada permissão, livre de cargos, a qualquer pessoa de adquirir uma cópia deste software e documentação associada (o &quot;Software&quot;) e negociá-lo sem restrições, incluindo os direitos de usar, copiar, modificar, fundir, publicar, distribuir, sub-licenciar e/ou vender cópias do Software, sem restrições, permitindo ainda àqueles que recebem o Software ter os mesmos direitos, sob as seguintes condições:</p>
+<p>A declaração de direitos autorais dada acima deverá ser incluída em todas as cópias ou partes substanciais do Software.</p>
+<p>O Software é fornecido &#8220;no estado&#8221;, sem garantias de qualquer tipo, sejam expressas ou implicadas, incluindo mas não limitado às garantias de mercabilidade, adequação para um propósito específico e não transgressão. Em caso algum serão os autores ou detentores dos direitos autorais responsabilizados em alguma reclamação, danos ou em outras obrigações, seja através de processos de contrato, por danos ou de outro tipo, devidos a ou ligados ao Software ou ao uso ou outras transacções do Software</p>
+</div>
+<ol>
+	<li>O arquivo <b>Manifest.txt</b> é aonde ficam todos os arquivos que participam do empacotamento da gem e estão registrados todos os arquivos que pertemcem ao projeto. Quando for adicionado um novo arquivo ao projeto esse arquivo tem que ser atualizado. Para fazer isso de uma maneira mais fácil deve ser usado a tarefa <code>rake manifest:refresh</code> que irá sobrescrever o arquivo com os arquivos existentes.</li>
+</ol>
+<ol>
+	<li>O arquivo <b><span class="caps">README</span>.txt</b> contém as informações básicas do projeto, uma descrição curta sobre o que é o projeto e por onde começar. Por default é este que irá aparecer quando a documentação RDoc for aberta.</li>
+</ol>
+<ol>
+	<li>Pasta <b>config</b> é aonde ficam as configurações do sistema, dentro deste diretório existem dois arquivos, o <b>hoe.rb</b> e o <b>requirements.rb</b>:
+	<ol>
+		<li><b>hoe</b> ficam todas as referências de configuração da construção do projeto e dados sobre o projeto, dono, local aonde está hospedado etc.</li>
+		<li><b>requirements.rb</b> ficam todas as gems de dependência do projeto e é criado uma mensagem de erro quando uma das gems não está instalada.</li>
+	</ol></li>
+</ol>
+<ol>
+	<li>Pasta <b>doc</b> é a pasta das documentações do rdoc no formato html.</li>
+</ol>
+<ol>
+	<li>Pasta <b>lib</b> é aonde estão os códigos fontes da gem. <br />
+<pre class='syntax'>
+jonatas@xonatax-mac:~/projetos/ruby/appointme$ ls -R lib
+appointme       appointme.rb
+
+lib/appointme:
+appointment.rb  schedule.rb     version.rb
+</pre></li>
+</ol>
+<ol>
+	<li>Pasta <b>pkg</b> é o diretório para colocar a gem quando empacotado o código fonte.</li>
+</ol>
+<p><pre class='syntax'>
+jonatas@xonatax-mac:~/projetos/ruby/appointme$ ls pkg
+appointme-0.0.4.gem     chronic-0.2.3.gem 
+</pre></p>
+<ol>
+	<li>Pasta <b>script</b> é para guardar os scripts de linha de comando, por default existem os seguintes scripts:</li>
+</ol>
+<p><pre class='syntax'>
+jonatas@xonatax-mac:~/projetos/ruby/appointme$ ls script 
+console         destroy         generate        txt2html
+</pre></p>
+
+	<ol>
+		<li><b>console</b> é muito útil para testes interativos com as classes. O que o script faz é carregar as suas classes compiladas e fazer testes rapidamente, exemplo:</li>
+	</ol><p><pre class='syntax'>
+<span class="ident">jonatas</span><span class="attribute">@xonatax</span><span class="punct">-</span><span class="ident">mac</span><span class="punct">:~/</span><span class="regex">projetos</span><span class="punct">/</span><span class="ident">ruby</span><span class="punct">/</span><span class="ident">appointme</span><span class="global">$ </span><span class="ident">script</span><span class="punct">/</span><span class="ident">console</span>
+<span class="constant">Carregando</span> <span class="ident">gem</span> <span class="ident">agendador</span>
+<span class="punct">&gt;&gt;</span> <span class="constant">Appointme</span><span class="punct">.</span><span class="ident">en</span> <span class="comment"># usei o tab duas vezes para ver as opções (auto-completar)</span>
+<span class="constant">Appointme</span><span class="punct">.</span><span class="ident">entender</span>
+<span class="punct">&gt;&gt;</span> <span class="constant">Appointme</span><span class="punct">.</span><span class="ident">entender</span> <span class="punct">&quot;</span><span class="string">jogar futebol próximo sábado às 4 da tarde</span><span class="punct">&quot;</span>
+<span class="punct">=&gt;</span> <span class="punct">&lt;</span><span class="constant">Agendador</span><span class="punct">::</span><span class="constant">Compromisso</span><span class="punct">:</span><span class="number">0x625980</span> <span class="attribute">@descricao</span><span class="punct">=&quot;</span><span class="string">jogar futebol próximo sábado</span><span class="punct">&quot;,</span> <span class="attribute">@quando</span><span class="punct">=</span><span class="constant">Sat</span> <span class="constant">Nov</span> <span class="number">08</span> <span class="number">16</span><span class="punct">:</span><span class="number">00</span><span class="punct">:</span><span class="number">00</span><span class="punct">&gt;</span>
+<span class="punct">&gt;&gt;</span> 
+</pre></p>
+
+	<ol>
+		<li><b>generate</b> usado para gerar uma estrutura apartir de uma template default. Neste projeto foi usado:<br />
+<pre class='syntax'>
+jonatas@xonatax-mac:~/projetos/ruby/appointme$ script/generate install_rspec
+      exists  spec
+      exists  tasks
+overwrite spec/appointme_spec.rb? [Ynaiqd] n
+        skip  spec/appointme_spec.rb
+overwrite spec/spec.opts? [Ynaiqd] n
+        skip  spec/spec.opts
+overwrite spec/spec_helper.rb? [Ynaiqd] n
+        skip  spec/spec_helper.rb
+      create  tasks/rspec.rake
+</pre><br />
+neste caso já havia sido instalado uma vez então houve algumas perguntas para sobrescrição dos arquivos existentes.</li>
+	</ol>
+	<ol>
+		<li><b>destroy</b> é usado para <b>desfazer</b> o que o <b>script/generate</b> faz.</li>
+	</ol>
+	<ol>
+		<li><b>txt2html</b> é o script que converte um arquivo texto para um arquivo html com marcação do textile, isso é um facilitador muibo bom para continuar escrevendo txt e gerando bons documentos html. Para converter um txt em html é simples:<br />
+<pre class='syntax'>
+ script/txt2html arquivo.txt &gt; arquivo.html
+</pre></li>
+	</ol><ol>
+	<li>O código ruby <b>setup.rb</b> é usado para as mais diversas tarefas dentro do projeto, fornecendo funções utilitárias para publicação, configuração default.</li>
+</ol>
+<ol>
+	<li>A pasta <b>spec</b> é aonde ficam as expectations ou seja, os testes do rspec e outros.<br />
+<pre class='syntax'>
+jonatas@xonatax-mac:~/projetos/ruby/appointme$ ls spec
+appointme_spec.rb       schedule_spec.rb        spec.opts               spec_helper.rb
+</pre>
+	<ol>
+		<li>arquivos terminados em _spec.rb estão as histórias dos usuários e o que se espera delas.</li>
+		<li>spec.opts estão as opções para rodar o rspec: <code>--color --format specdocs</code></li>
+		<li>spec_helper.rb é o arquivo utilitário que por default é incluido quando for usar o rspec.</li>
+	</ol></li>
+</ol>
+<ol>
+	<li>A pasta <b>stage_pt_br</b> é aonde está este arquivo do estágio. Como o projeto inteiro foi escrito em inglês e apenas esta pasta está contendo todo o material e documentação em português:<br />
+<pre class='syntax'>
+jonatas@xonatax-mac:~/projetos/ruby/appointme$ ls stage_pt_br/
+index_pt_br.html        javascripts             template.html.erb
+index_pt_br.txt         stylesheets
+</pre><br />
+Esta é a única pasta do projeto que não foi criada automaticamente pelo gerador e foi adicionada depois para guardar este projeto de estágio.</li>
+</ol>
+<ol>
+	<li>A pasta <b>test</b> traz o default do ruby para testes unitários e possui dois arquivos um para teste e outro para helper, mas neste caso não está sendo utilizado pois foi escolhido a ferramenta rspec para fazer testes.</li>
+</ol>
+<ol>
+	<li>A pasta <b>website</b></li>
+</ol>
+<p>Nesta pasta fica o website do projeto, trazendo também como na pasta stage_pt_br os estilos e template e javascript iniciais para o projeto.</p>
+<h2>A história com <a href="http://chronic.rubyforge.org">Chronic gem</a></h2>
+No início deste projeto, eu estava guiando ele usando Osiris que é um <a href="http://pt.wikipedia.org/wiki/Chatterbot">chatterbot</a> implementado usando a linguagem de programação ruby.
+A abordagem usando o chatterbot para implementar um sistema de compreensão de datas e horas não foi muito longe pois a tentativa de organizar as horas naquele contexto que o Osiris oferecia, não tornavam as coisas muito simples então decisão foi encontrar uma ferramenta que transformasse uma <pre class='syntax'><span class="punct">&quot;</span><span class="string">string</span><span class="punct">&quot;</span></pre> em uma instância de uma classe <pre class='syntax'><span class="constant">Time</span><span class="punct">.</span><span class="ident">new</span></pre> e encontrei facilmente no google <a href="http://chronic.rubyforge.org">Chronic gem</a> onde simplesmente precisava escrever:
+<pre class='syntax'> 
+   <span class="ident">puts</span>  <span class="constant">Chronic</span><span class="punct">.</span><span class="ident">parse</span><span class="punct">(&quot;</span><span class="string">próximo sábado às 8</span><span class="punct">&quot;).</span><span class="ident">inspect</span>
+   <span class="constant">Sat</span> <span class="constant">Nov</span> <span class="number">01</span> <span class="number">08</span><span class="punct">:</span><span class="number">00</span><span class="punct">:</span><span class="number">00</span> <span class="punct">-</span><span class="number">0200</span> <span class="number">2008</span>
+ </pre>
+com várias opções como esta eu apenas reparti o resto da frase com a hora e coloquei o compromisso em uma agenda:
+<pre class='syntax'> 
+
+   <span class="ident">include</span> <span class="constant">Agendador</span>
+
+   <span class="ident">agenda</span> <span class="punct">=</span> <span class="constant">Agenda</span><span class="punct">.</span><span class="ident">new</span> 
+
+   <span class="ident">ir_na_aula_de_ingles</span> <span class="punct">=</span> <span class="constant">Agendador</span><span class="punct">.</span><span class="ident">new</span> <span class="symbol">:quando</span> <span class="punct">=&gt;</span> <span class="punct">&quot;</span><span class="string">próximo sábado as 3 da tarde</span><span class="punct">&quot;,</span>
+                                        <span class="symbol">:descriçã</span><span class="ident">o</span> <span class="punct">=&gt;</span> <span class="punct">&quot;</span><span class="string">aula de ingles</span><span class="punct">&quot;</span>
+
+   <span class="ident">agenda</span><span class="punct">.</span><span class="ident">compromissos</span> <span class="punct">&lt;&lt;</span> <span class="ident">ir_na_aula_de_ingles</span> 
+
+   <span class="ident">puts</span> <span class="ident">agenda</span><span class="punct">.</span><span class="ident">compromissos</span> <span class="comment"># quando?: Sábado(01) às 15:00 - aula de ingles</span>
+
+ </pre>
+<h2>Usando os métodos estáticos do agendador para ser mais fácil</h2>
+<pre class='syntax'> 
+
+    <span class="constant">Agendador</span><span class="punct">.</span><span class="ident">entenda</span> <span class="punct">&quot;</span><span class="string">amanhã as 8 levantar cara!</span><span class="punct">&quot;</span>
+    <span class="constant">Agendador</span><span class="punct">.</span><span class="ident">entenda</span> <span class="punct">&quot;</span><span class="string">amanhã as 9 trabalho, trabalho</span><span class="punct">&quot;</span>
+    <span class="constant">Agendador</span><span class="punct">.</span><span class="ident">entenda</span> <span class="punct">&quot;</span><span class="string">comer alguma comida japonesa na hora do almoço com a maria.</span><span class="punct">&quot;</span>
+    <span class="constant">Agendador</span><span class="punct">.</span><span class="ident">entenda</span> <span class="punct">&quot;</span><span class="string">amanhã as 6:10pm sair e tomar umas cervejas</span><span class="punct">&quot;</span>
+    <span class="constant">Agendador</span><span class="punct">.</span><span class="ident">entenda</span> <span class="punct">&quot;</span><span class="string">amanhã as 6:30pm happy hour!!! uhuuuu</span><span class="punct">&quot;</span>
+    
+    <span class="ident">imprime</span> <span class="constant">Agendador</span><span class="punct">.</span><span class="ident">entenda</span> <span class="punct">&quot;</span><span class="string">mostre amanhã as 6 da tarde</span><span class="punct">&quot;</span> 
+
+    <span class="ident">quando?</span><span class="punct">:</span> <span class="constant">Segunda</span><span class="punct">(</span><span class="number">27</span><span class="punct">)</span> <span class="ident">as</span> <span class="number">18</span><span class="punct">:</span><span class="number">10</span> <span class="punct">-</span> <span class="ident">sair</span> <span class="ident">e</span> <span class="ident">tomar</span> <span class="ident">umas</span> <span class="ident">cervejas</span>
+    <span class="ident">quando?</span><span class="punct">:</span> <span class="constant">Segunda</span><span class="punct">(</span><span class="number">27</span><span class="punct">)</span> <span class="ident">as</span> <span class="number">18</span><span class="punct">:</span><span class="number">30</span> <span class="punct">-</span> <span class="ident">happy</span> <span class="ident">hour!</span> <span class="ident">uhuuuu</span>
+
+ </pre>
+<h2>Licença<br />
+Esse código é livre para usar sobre os termos da licença <span class="caps">MIT</span>.</h2>
+<h2>Contato</h2>
+<p>Comentários são bem-vindos. Envie um email para <a href="mailto:jonatasdp@gmail.com">Jônatas Davi Paganini</a></p>
+    <p class="coda">
+      <a href="jonatasdp@gmail.com">Jônatas Davi Paganini</a>, 17th November 2008<br>
+      Theme extended from <a href="http://rb2js.rubyforge.org/">Paul Battley</a>
+    </p>
+</div>
+
+<!-- insert site tracking codes here, like Google Urchin -->
+
+</body>
+</html>

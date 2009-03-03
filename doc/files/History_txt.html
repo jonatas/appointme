@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: History.txt</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>History.txt</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>History.txt
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Mon Nov 03 20:39:20 -0200 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+</map>
+<img src="../dot/f_0.png" usemap="#map" border="0" alt="dot/f_0.png">
+    </div>
+
+    <div id="description">
+      <h2>0.0.1 2008-07-21</h2>
+<ul>
+<li>Initial release
+
+<ul>
+<li>Included de osiris core and default personality extended.
+
+</li>
+<li>Start to describe the specs.
+
+</li>
+</ul>
+</li>
+</ul>
+<h2>0.0.2 2008-08-26</h2>
+<ul>
+<li>Adding Chronic gem:
+
+<ul>
+<li>Fixed date-time parser with Chronic gem.
+
+</li>
+<li>Added instance variable non_tagged_words at Chronic gem.
+
+</li>
+<li>It&#8216;s mean that I can get non-date-time for string and use as
+
+<pre>
+  my description about my appointment.
+</pre>
+</li>
+<li>Change Appointment class to have when as timestmap.
+
+</li>
+</ul>
+</li>
+</ul>
+<h2>0.0.3 2008-10-19</h2>
+<ul>
+<li>Osiris removed with success!
+
+<ul>
+<li>Removed Osiris and change the structure to send methods for schedule.
+
+</li>
+</ul>
+</li>
+</ul>
+<h2>0.0.4 2008-10-26</h2>
+<ul>
+<li>Revision to delivery on the college
+
+<ul>
+<li>Write docs about Schedule and Appointment
+
+</li>
+<li>Refactor methods that&#8216;s work with time to receive string and time.
+
+</li>
+<li>Get others screenshots and put all togetter to see the documentation.
+
+</li>
+<li>Revised the documentation.
+
+</li>
+</ul>
+</li>
+<li>Refactors
+
+<ul>
+<li>Methods dry. Improve any methods and removed others from module that cant
+continue there because just calling others.
+
+</li>
+<li>spec_helper to help: Create some appointments&#8217; done to test my
+schedule.
+
+</li>
+</ul>
+</li>
+<li>Spec tasks
+
+<ul>
+<li>Create rake spec and rake spec_html
+
+</li>
+<li>Change rake default to execute rake spec.
+
+</li>
+<li>spec_html task generates specs.html.
+
+</li>
+</ul>
+</li>
+<li>Documentation
+
+<ul>
+<li>Write docs for stage.
+
+</li>
+<li>Start to translate docs for stage.
+
+</li>
+</ul>
+</li>
+<li>Website&#8216;s changes
+
+<ul>
+<li>Improved and added other examples using schedule.
+
+</li>
+<li>Removed all non-used stuff.
+
+</li>
+<li>Translated index.txt into portuguese to index_pt_br.txt file.
+
+</li>
+</ul>
+</li>
+<li>Specs
+
+<ul>
+<li>Added new specs for Appointment.get_range_of_time_to_show
+
+</li>
+</ul>
+</li>
+</ul>
+<h2>0.0.4 2008-11-02</h2>
+<ul>
+<li>Portuguese documentation:
+
+<ul>
+<li>Improved translated docs.
+
+</li>
+<li>Added titles:
+
+</li>
+<li>Newgem
+
+</li>
+<li>Rake
+
+</li>
+<li>Structure Directories
+
+</li>
+<li>Review all docs
+
+</li>
+<li>Added screenshots about rspec.
+
+</li>
+</ul>
+</li>
+</ul>
+<h2>0.0.4 2008-11-03</h2>
+<ul>
+<li>Enviroment improvements.
+
+<ul>
+<li>move requires of gems to config/requirements.rb
+
+</li>
+<li>added madeleine prevalent system to store the schedule
+
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

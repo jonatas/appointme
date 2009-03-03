@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README.txt</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README.txt</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README.txt
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Sun Oct 26 17:48:26 -0200 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+</map>
+<img src="../dot/f_0.png" usemap="#map" border="0" alt="dot/f_0.png">
+    </div>
+
+    <div id="description">
+      <h1>appointme</h1>
+<pre>
+  Appointme is a simple schedule in natural language. With this, you can put your appointments in your schedule simply typing what you will do and when you will do it.
+  It's my first experience with BDD practices and today I'm very happy because rspec runs ok! I'm driving this project with specs.
+</pre>
+<ul>
+<li>appointme.rubyforge.org
+
+</li>
+</ul>
+<h2>DESCRIPTION:</h2>
+<h2>FEATURES/PROBLEMS:</h2>
+<ul>
+<li>my first challenge here:
+
+<pre>
+ - how can i keep this project DRY(Don't repeat yourself)?
+   #=&gt; an example for it about time and date:
+     I can speak about hours a lot of tips like:
+        at num, afternum, 3 o'clock, 02:00 AM, etc.
+
+     on the date:
+       today, yesterday, 3 years ago, 2 weeks, this week, etc.
+
+     I'm using chronic for solve this problem.
+
+   Chronic is a good gem and works well. It works with a simple pattern implementing for the words with some tokens recognized.
+   There are some classes understanding about time, weeks, months, hours and other stuff like that. And each word should recognize or not for some classes, puting in future or past context, by default it runs with future context.
+   Passing by several filters in each word, example:
+</pre>
+</li>
+</ul>
+<p>
+# normalize string parameter # split the phrase and return a array of
+tokens. # scan all words and get base of tokens for each word. # select all
+tagged words
+</p>
+<p>
+it runs well but I knew that can&#8216;t return non tagged words because on
+the code I found
+</p>
+<p>
+@tokens = @tokens.select{|word| workd.tagged?}
+</p>
+<p>
+and in this line I found what I didn&#8216;t want, because put a new
+appointment is divided by 2 parts time and description, and when I put some
+phrase like: &quot;i will go to the dentist tomorrow at 3&quot; I have 3
+words with time and other words should be the description for appointment.
+Of course I change this line:
+</p>
+<p>
+@tokens = @tokens.select{|token| token.tagged?}
+</p>
+<p>
+to:
+</p>
+<p>
+@tokens, @non_tagged_tokens = @tokens.partition { |token| token.tagged? }
+</p>
+<p>
+and with this I know that @non_tagged_tokens should be some array with
+words that shouldn&#8216;t have time and is this the description for my
+appointment. It&#8216;s really awesome now and because this I left Osiris
+chatterbot implementation and I intend to just parse some words to see and
+erase some time in my schedule. Solving my problem there&#8216;s
+</p>
+<pre>
+   Appointme.get_time_and_rest_from(&quot;i will go there next monday at 3&quot;)
+   #=&gt; [Mon Oct 27 15:00:00 -0200 2008, &quot;i will go there&quot;]
+</pre>
+<h2>SYNOPSIS:</h2>
+<pre>
+ try on console:
+ script/console
+ Appointme.understand(&quot;I will go dentist today at 4&quot;)  &amp;&amp;  Appointme.understand(&quot;tomorrow i need to call my teacher at noon&quot;)
+ # =&gt; &quot;ok&quot;
+ &gt;&gt; puts Appointme.understand &quot;show&quot;
+ when?: Saturday(18) at 16:00 - i will go dentist
+ when?: Sunday(19) at 12:00 - i need to call my teacher num
+</pre>
+<h2>REQUIREMENTS:</h2>
+<ul>
+<li>FIX (list of requirements)
+
+</li>
+</ul>
+<h2>INSTALL:</h2>
+<pre>
+  &quot;download this gem here&quot;:http://FIXTHISADDRESSESPLEASE
+  sudo gem install appointme.gem
+</pre>
+<ul>
+<li>FIX (sudo gem install, anything else)
+
+</li>
+</ul>
+<h2>LICENSE:</h2>
+<p>
+(The MIT License)
+</p>
+<p>
+Copyright (c) 2008 Jônatas Davi Paganini
+</p>
+<p>
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+&#8216;Software&#8217;), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to the
+following conditions:
+</p>
+<p>
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+</p>
+<p>
+THE SOFTWARE IS PROVIDED &#8216;AS IS&#8217;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+USE OR OTHER DEALINGS IN THE SOFTWARE.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+h1. 'appointme'
+  Appointme is a simple schedule in natural language. With this, you can put your appointments in your schedule simply typing what you will do and when you will do it.
+
+h2. Installing
+
+<pre syntax="ruby">sudo gem install appointme</pre>
+
+h2. The basics
+
+  Just with "Chronic gem":http://chronic.rubyforge.org I parse some phrase like:
+ <pre syntax="ruby"> 
+   puts  Chronic.parse("next saturday at 8").inspect
+   # Sat Nov 01 08:00:00 -0200 2008
+ </pre>
+
+  with a lot of options like this I just split the rest of the time description to see and put new appointments on the schedule:
+  
+ <pre syntax="ruby"> 
+
+   include Appointme
+
+   schedule = Schedule.new 
+
+   go_to_english_class = Appointment.new :when => "next saturday at 3",
+                                         :description => "english class"
+
+   schedule.appointments << go_to_english_class
+
+   puts schedule.appointments # when?: Saturday(01) at 15:00 - english class
+
+ </pre>
+
+h2. Using static methods to be more easy
+
+ <pre syntax="ruby"> 
+
+    Appointme.understand "tomorrow at 8 wake up man!"
+    Appointme.understand "tomorrow at 9 work, work"
+    Appointme.understand "eat some japanese food with mary tomorrow at noon"
+    Appointme.understand "tomorrow at 6:10pm get out job drink some beers"
+    Appointme.understand "tomorrow at 6:30pm happy hour! woohooo"
+    
+    puts Appointme.understand "show tomorrow at 6 pm" 
+
+    when?: Monday(27) at 18:10 - get out job drink some beers
+    when?: Monday(27) at 18:30 - happy hour! woohooo
+
+ </pre>
+
+h2. License
+
+This code is free to use under the terms of the MIT license. 
+
+h2. Contact
+
+Comments are welcome. Send an email to "Jônatas Davi Paganini":mailto:jonatasdp@gmail.com via the "forum":http://groups.google.com/group/appointme
+

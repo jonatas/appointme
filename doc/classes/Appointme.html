@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Appointme</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Appointme</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/appointme_rb.html">
+                lib/appointme.rb
+                </a>
+        <br />
+                <a href="../files/lib/appointme/appointment_rb.html">
+                lib/appointme/appointment.rb
+                </a>
+        <br />
+                <a href="../files/lib/appointme/schedule_rb.html">
+                lib/appointme/schedule.rb
+                </a>
+        <br />
+                <a href="../files/lib/appointme/version_rb.html">
+                lib/appointme/version.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="rect" coords="177,5,249,53"      href="Array.html" alt="Array" />
+  <area shape="rect" coords="173,111,253,159"      href="Appointme/Schedule.html" alt="Schedule" />
+  <area shape="rect" coords="27,111,123,159"      href="Appointme/Appointment.html" alt="Appointment" />
+  <area shape="rect" coords="267,99,360,147"      href="Appointme/VERSION.html" alt="VERSION" />
+  <area shape="rect" coords="16,64,371,169"      href="Appointme.html" alt="Appointme" />
+</map>
+<img src="../dot/f_3.png" usemap="#map" border="0" alt="dot/f_3.png">
+    </div>
+
+    <div id="description">
+      <p>
+simple natural language schedule
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000008">get_range_of_time_to_show</a>&nbsp;&nbsp;
+      <a href="#M000007">get_time_and_rest_from</a>&nbsp;&nbsp;
+      <a href="#M000006">last_appointment</a>&nbsp;&nbsp;
+      <a href="#M000005">understand</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Appointme/Appointment.html" class="link">Appointme::Appointment</a><br />
+Class <a href="Appointme/Schedule.html" class="link">Appointme::Schedule</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="Appointme.src/M000008.html" target="Code" class="method-signature"
+            onclick="popupCode('Appointme.src/M000008.html');return false;">
+          <span class="method-name">get_range_of_time_to_show</span><span class="method-args">(time)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+get range of time when I put &quot;today&quot; its start on 00:00 hour and
+finish today 23:59
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="Appointme.src/M000007.html" target="Code" class="method-signature"
+            onclick="popupCode('Appointme.src/M000007.html');return false;">
+          <span class="method-name">get_time_and_rest_from</span><span class="method-args">(phrase)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+get time and other part from prhase, example:
+</p>
+<pre>
+ Appointme.get_time_and_rest_from(&quot;I'm happy today&quot;)
+ [Sun Oct 26 19:30:00 -0200 2008, &quot;im happy&quot;]
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
+
+        <div class="method-heading">
+          <a href="Appointme.src/M000006.html" target="Code" class="method-signature"
+            onclick="popupCode('Appointme.src/M000006.html');return false;">
+          <span class="method-name">last_appointment</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns the last appointment
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="Appointme.src/M000005.html" target="Code" class="method-signature"
+            onclick="popupCode('Appointme.src/M000005.html');return false;">
+          <span class="method-name">understand</span><span class="method-args">(phrase)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

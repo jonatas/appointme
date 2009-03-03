@@ -1,0 +1,65 @@
+== 0.0.1 2008-07-21
+
+* Initial release
+  - Included de osiris core and default personality extended.
+  - Start to describe the specs.
+
+== 0.0.2 2008-08-26
+* Adding Chronic gem:
+   
+  - Fixed date-time parser with Chronic gem.
+  - Added instance variable non_tagged_words at Chronic gem. 
+  - It's mean that I can get non-date-time for string and use as 
+      my description about my appointment.    
+
+  - Change Appointment class to have when as timestmap.
+
+== 0.0.3 2008-10-19
+* Osiris removed with success!
+  - Removed Osiris and change the structure to send methods for schedule.
+
+== 0.0.4 2008-10-26
+* Revision to delivery on the college
+  - Write docs about Schedule and Appointment
+  - Refactor methods that's work with time to receive string and time.
+  - Get others screenshots and put all togetter to see the documentation.
+  - Revised the documentation. 
+
+* Refactors
+  - Methods dry. Improve any methods and removed others from module that
+    cant continue there because just calling others.
+
+  - spec_helper to help:
+    Create some appointments' done to test my schedule.
+
+* Spec tasks
+  * Create rake spec and rake spec_html
+  - Change rake default to execute rake spec.
+  - spec_html task generates specs.html.
+
+* Documentation
+  - Write docs for stage.
+  - Start to translate docs for stage.
+
+* Website's changes
+  - Improved and added other examples using schedule.
+  - Removed all non-used stuff.
+  - Translated index.txt into portuguese to index_pt_br.txt file.
+
+* Specs
+  - Added new specs for Appointment.get_range_of_time_to_show
+
+== 0.0.4 2008-11-02
+* Portuguese documentation:
+  - Improved translated docs.
+  - Added titles:
+  - Newgem
+  - Rake
+  - Structure Directories
+  - Review all docs
+  - Added screenshots about rspec.
+
+== 0.0.4 2008-11-03
+* Enviroment improvements.
+  - move requires of gems to config/requirements.rb
+  - added madeleine prevalent system to store the schedule

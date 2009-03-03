@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: index_pt_br.txt</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>index_pt_br.txt</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>stage_pt_br/index_pt_br.txt
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Mon Nov 17 19:28:21 -0200 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+</map>
+<img src="../../dot/f_0.png" usemap="#map" border="0" alt="dot/f_0.png">
+    </div>
+
+    <div id="description">
+      <p>
+h1. &#8216;agendador&#8216;
+</p>
+<pre>
+  Agendador é uma simples agenda em linguagem natural. Com ela, você pode por seus compromissos digitando o que e quando você irá fazer.
+</pre>
+<p>
+h2. Ferramentas usadas para contrução:
+</p>
+<pre>
+  Este projeto foi feito usando &quot;NewGem&quot;:http://newgem.rubyforge.org para empacotamento em formato de gem e &quot;RSpec&quot;:http://rpsec.info para testes e bdd.
+</pre>
+<p>
+h3. O que é gem?
+</p>
+<pre>
+  Gem é um pacote de códigos ruby para rodar e instalar com facilidade, para usar as gems disponíveis é necessário instalar &quot;Rubygems&quot;:http://www.rubygems.org que fornece um executável baseado na linha de comando com opções de gerenciar as gems, instalar, remover, ver documentações.
+  Para usar as gems existentes é necessário digitar o comando gem install nome_da_gem, neste exemplo está instalando a gem agendador que seria a própria gem deste projeto.
+</pre>
+<p>
+&lt;pre syntax=&quot;code&quot;&gt;sudo gem install agendador&lt;/pre&gt;
+</p>
+<pre>
+  Existe outra opção que é instalar localmente usando o próprio arquivo gem:
+</pre>
+<p>
+&lt;pre syntax=&quot;code&quot;&gt;
+jonatas@xonatax-mac:~/projetos/ruby/appointme$ sudo gem install
+pkg/appointme-0.0.4.gem Password: ******
+</p>
+<p>
+Successfully installed appointme-0.0.4 1 gem installed Installing ri
+documentation for appointme-0.0.4&#8230; Installing RDoc documentation for
+appointme-0.0.4.. &lt;/pre&gt;
+</p>
+<p>
+h2. Documentação do projeto
+</p>
+<p>
+h3. Ruby RI - Ferramenta de vizualização de documentação:
+</p>
+<p>
+Observe que foi instalado a documentação ri e RDoc e apartir de agora
+estão disponíveis para consulta. Esta consulta pode ser feita através de
+um utilitário do ruby chamado ri:
+</p>
+<p>
+&lt;pre syntax=&quot;code&quot;&gt;
+jonatas@xonatax-mac:~/projetos/ruby/appointme$ ri <a
+href="../../classes/Appointme/Appointment.html">Appointme::Appointment</a>
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

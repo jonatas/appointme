@@ -1,0 +1,32 @@
+digraph TopLevel {
+    label = "TopLevel"
+    compound = true
+    fontname = Arial
+    fontsize = 8
+    bgcolor = lightcyan1
+    node [
+        color = black,
+        fontname = Arial,
+        fontsize = 8
+    ]
+
+    Time [
+        fontcolor = black,
+        shape = ellipse,
+        URL = "classes/Time.html",
+        color = palegoldenrod,
+        style = filled,
+        label = "Time"
+    ]
+
+    Fixnum [
+        fontcolor = black,
+        shape = ellipse,
+        URL = "classes/Fixnum.html",
+        color = palegoldenrod,
+        style = filled,
+        label = "Fixnum"
+    ]
+
+}
+
